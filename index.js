@@ -24,14 +24,27 @@ const rocky = {
   coupon: true,
 };
 //Rocky total cost is $150, he has sub and coupon, so grand total is $102.5
-
-
+ 
 //Create function for finalAmout
-//First, determind the subtotal of each customer
-//Second, create condition if customer has a subsciption for %25 off
-//Third, create another condition if customer also has a coupon for $10 off
-function finalAmout() {
-  //Find the subtotal
-  const subTotal = pricePerRefill * refills;
+function finalCost(customer) {
+  //First, determind the subtotal of each
+  const subTotal = customer.pricePerRefill * customer.refills;
+  let finalTotal = subTotal;
+
+  //Second, create condition if customer has a subsciption for %25 off
+  if (customer.subscription) {
+    finalTotal *= 0.75;
+  }
+
+  //Third, create another condition if customer also has a coupon for $10 off
+  if (customer.coupon) {
+    finalTotal -= 10;
+  }
+
+  //Print the reuslt of each customer
+  console.log(
+    `${customer.name}` + " => " + `Your grand total is ${finalTotal}.`
+  );
 }
-console.log(finalAmout);
+
+finalCost(sarah);
